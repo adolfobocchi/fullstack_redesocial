@@ -91,7 +91,10 @@ const PostModel = {
     const db = await openDatabase();
     const result = await db.run('DELETE FROM Post WHERE id = ?', id);
 
+
     if (result.changes > 0) {
+      await db.run('DELETE FROM Comment WHERE post_id = ?', id);
+      await db.run('DELETE FROM PostHistory WHERE post_id = ?', id);
       return true;
     } else {
       return null;
