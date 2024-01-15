@@ -69,7 +69,7 @@ const PostView = ({ post, comments, loading, error, user, createComment, getComm
         </Styled.PostHeader>
         <Styled.UserInfo>{`Postado por: ${post.name} as ${formatDate(post.created_at)}`}</Styled.UserInfo>
         <Styled.Description>{post.description}</Styled.Description>
-        {post.imagem && <Styled.ImagePreview src={`${API_URL}/images/${post.imagem}`} alt='Imagem Postagem' />}
+        {post.imagem && <div style={{display: 'flex', justifyContent: 'center'}}><Styled.ImagePreview src={`${API_URL}/images/${post.imagem}`} alt='Imagem Postagem' /></div> }
         <Styled.CommentForm onSubmit={handleCommentSubmit}>
           <Styled.CommentInput
             id="commentText"

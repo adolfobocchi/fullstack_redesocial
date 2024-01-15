@@ -198,7 +198,7 @@ export const ModalContent = styled.div`
   border-radius: 8px;
   max-width: 400px;
   width: 400px;
-  max-height: 600px;
+  max-height: auto;
   overflow: hidden;
 `;
 
@@ -310,7 +310,8 @@ export const CommentList = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: 250px;
+  flex: 1;
+  max-height: 200px;
   overflow-y: auto;
 `;
 
@@ -378,7 +379,7 @@ export const InputFile = styled.div`
 `;
 
 export const ImagePreview = styled.img`
-  max-width: 100%;
+  max-width: 60%;
   max-height: 200px; 
   margin-top: 10px;
 `;
