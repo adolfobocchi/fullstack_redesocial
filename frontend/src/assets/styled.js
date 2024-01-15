@@ -1,6 +1,5 @@
 
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
 import { MdThumbUp, MdThumbDown, MdEdit, MdVisibility, MdClose, MdDelete, MdSend, MdLogout, MdPermIdentity, MdReport, MdPrint, MdHistory, MdImage } from 'react-icons/md';
 
 const primaryColor = '#0095f6';
@@ -73,7 +72,6 @@ export const ErrorMessage = styled.p`
   margin-top: 10px;
 `;
 
-
 export const FormContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -82,9 +80,8 @@ export const FormContainer = styled.div`
   max-width: 400px;
 `;
 
-
 export const SubmitButton = styled.button`
-margin-top: 4px;
+  margin-top: 4px;
   margin-bottom: 4px;
   background-color:  ${primaryColor};
   color: white;
@@ -103,26 +100,7 @@ margin-top: 4px;
     cursor: not-allowed;
   }
 `;
-export const WarningButton = styled.button`
-margin-top: 4px;
-  margin-bottom: 4px;
-  background-color: ${warningColor};
-  color: white;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  width: 100%;
-  &:hover {
-    background-color: #ffd700;;
-  }
 
-  &:disabled {
-    background-color: #ffe699;;
-    cursor: not-allowed;
-  }
-`;
 export const DangerButton = styled.button`
   margin-top: 4px;
   margin-bottom: 4px;
@@ -194,27 +172,12 @@ export const UserInfo = styled.div`
   margin-bottom: 6px;
 `;
 
-export const WelcomeMessage = styled.span`
-  margin-right: 10px;
-`;
-
-export const StyledLink = styled(Link)`
-  color: white;
-  margin-right: 10px;
-  text-decoration: none;
-
-  &:hover {
-    text-decoration: underline;
-  }
-`;
-
 export const LogoutButton = styled.button`
   background-color: transparent;
   color: white;
   border: none;
   cursor: pointer;
 `;
-
 
 export const Modal = styled.div`
   position: fixed;
@@ -248,8 +211,6 @@ justify-content: center;
   cursor: pointer;
 `;
 
-
-
 export const HomeContainer = styled.div`
   
   max-width: 400px;
@@ -260,21 +221,6 @@ export const HomeContainer = styled.div`
 export const FormPost = styled.form`
   display: flex;
   flex-direction: column;
-`;
-
-export const Label = styled.label`
-  margin-bottom: 8px;
-  font-weight: bold;
-`;
-
-export const Input = styled.input`
-  padding: 8px;
-  margin-bottom: 16px;
-`;
-
-export const ButtonContainer = styled.div`
-  display: flex;
-  justify-content: space-between;
 `;
 
 export const PostBarButton = styled.button`
@@ -289,7 +235,6 @@ export const PostBarButton = styled.button`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-
 
 export const PostContainer = styled.div`
   border: 1px solid #ccc;
@@ -321,10 +266,6 @@ export const PostAction = styled.div`
   svg {
     font-size: 1.5rem;
   }
-`;
-
-export const PostDescription = styled.p`
-  margin-bottom: 10px;
 `;
 
 export const PostStats = styled.div`
@@ -365,7 +306,6 @@ export const SendButton = styled.button`
 `;
 
 export const CommentList = styled.div`
-  /* Adicione estilos para a lista de comentários aqui */
   margin-top: 20px;
   width: 100%;
   display: flex;
@@ -385,11 +325,7 @@ export const CommentItem = styled.div`
   width: 100%;
 `;
 
-export const CommentText = styled.p`
-  /* Adicione estilos para o texto do comentário aqui */
-  flex-grow: 1;
-  margin: 0;
-`;
+
 
 export const EditButton = styled.button`
   background-color: transparent;
@@ -443,7 +379,7 @@ export const InputFile = styled.div`
 
 export const ImagePreview = styled.img`
   max-width: 100%;
-  max-height: 200px; /* Ajuste a altura conforme necessário */
+  max-height: 200px; 
   margin-top: 10px;
 `;
 
@@ -488,7 +424,6 @@ export const ViewIcon = styled(MdVisibility)`
   color: ${warningColor};
 `;
 
-
 export const DeleteIcon = styled(MdDelete)`
   height: ${iconSizeSmall};
   width: ${iconSizeSmall};
@@ -497,8 +432,8 @@ export const DeleteIcon = styled(MdDelete)`
 `;
 
 export const CloseIcon = styled(MdClose)`
-  height: ${iconSizeSmall};
-  width: ${iconSizeSmall};
+  height: ${iconSizeLarger};
+  width: ${iconSizeLarger};
   margin-right: 5px;
   color: ${borderColor};
 `;

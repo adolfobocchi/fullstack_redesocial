@@ -29,13 +29,13 @@ const Perfil = ({ user, loading, error, updateUser, deleteUser, onClose }) => {
     const handleUpdate = (e) => {
         e.preventDefault();
         updateUser({ ...userData, id: user.id });
-        onClose();
+        onClose(e);
     };
 
     const handleDelete = (e) => {
         e.preventDefault();
         deleteUser({ userId: user.id });
-        onClose();
+        onClose(e);
     };
 
     return (
@@ -64,14 +64,6 @@ const Perfil = ({ user, loading, error, updateUser, deleteUser, onClose }) => {
                             name="email"
                             placeholder='E-mail'
                             value={userData.email}
-                            onChange={handleInputChange}
-                        />
-                        <Styled.InputField
-                            type="password"
-                            id="password"
-                            placeholder='Senha'
-                            name="password"
-                            value={userData.password}
                             onChange={handleInputChange}
                         />
 

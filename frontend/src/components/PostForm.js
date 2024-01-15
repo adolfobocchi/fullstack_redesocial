@@ -95,6 +95,8 @@ const PostFom = ({ user, post, loading, error, createPost, updatePost, deletePos
                             name="title"
                             value={postData.title}
                             onChange={(event) => handleInputChange(event)}
+                            required
+                            maxLength={100}
                         />
                         <Styled.TextAreaField
                             id="description"
@@ -102,6 +104,7 @@ const PostFom = ({ user, post, loading, error, createPost, updatePost, deletePos
                             placeholder='Descrição da postagem'
                             value={postData.description}
                             onChange={(event) => handleInputChange(event)}
+                            required
                         />
                         {(postData.image || postData.preview) && <Styled.ImagePreview src={postData?.preview ? postData?.preview : `${API_URL}/images/${postData?.image}` } alt='Pré visualização da imagem' />}
                         <Styled.InputFile>

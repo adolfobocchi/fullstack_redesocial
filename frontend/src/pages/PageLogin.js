@@ -27,13 +27,13 @@ const PageLogin = ({ isAuthenticated, token}) => {
             <Styled.AuthContainer>
                 {showRegister ? (
                     <>
-                        <Register />
-                        <Styled.DescriptionSmall>Tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Conecte-se.</Styled.SwitchAuthLink></Styled.DescriptionSmall>
+                        <Register onClose={setShowRegister} />
+                        <Styled.DescriptionSmall style={{margin: '10px 0'}}>Tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Conecte-se.</Styled.SwitchAuthLink></Styled.DescriptionSmall>
                     </>
                 ) : (
                     <>
                         <Login />
-                        <Styled.DescriptionSmall> Não tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Cadastre-se</Styled.SwitchAuthLink></Styled.DescriptionSmall>
+                        <Styled.DescriptionSmall style={{margin: '10px 0'}}> Não tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Cadastre-se</Styled.SwitchAuthLink></Styled.DescriptionSmall>
                     </>
                 )}
             </Styled.AuthContainer>

@@ -5,7 +5,7 @@ import { registerUser } from '../store/modules/User/actions';
 
 
 
-const Register = () => {
+const Register = ({ onClose }) => {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.user.loading);
   const error = useSelector((state) => state.user.error);
@@ -25,6 +25,7 @@ const Register = () => {
     e.stopPropagation()
     e.preventDefault();
     dispatch(registerUser(userData));
+    onClose(false)
   };
 
   return (
@@ -39,6 +40,8 @@ const Register = () => {
           name="name"
           value={userData.name}
           onChange={handleInputChange}
+          required
+          maxLength={100}
         />
         <Styled.InputField
           type="email"
@@ -47,6 +50,8 @@ const Register = () => {
           placeholder='E-mail'
           value={userData.email}
           onChange={handleInputChange}
+          required
+          maxLength={191}
         />
         <Styled.InputField
           type="password"
@@ -55,6 +60,8 @@ const Register = () => {
           name="password"
           value={userData.password}
           onChange={handleInputChange}
+          required
+          minLength={8}
         />
 
         <Styled.DescriptionSmall style={{marginBottom: '10px'}}>

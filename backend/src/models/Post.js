@@ -31,7 +31,7 @@ const PostModel = {
     const db = await openDatabase();
     const result = await db.run('INSERT INTO Post (user_id, title, description, imagem) VALUES (?, ?, ?, ?)', [user_id, title, description, imagem]);
     const lastID = result.lastID;
-    const post = await db.get('SELECT * FROM Post WHERE id = ?', [lastID]);
+    const post = await db.get('SELECT tab1.*, tab2.name FROM Post tab1 inner join User tab2 on tab1.user_id = tab2.id WHERE tab1.id = ?', [lastID]);
     return post;
   },
 
