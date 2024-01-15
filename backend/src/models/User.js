@@ -3,12 +3,13 @@ const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const UserModel = {
-  // pega um usuário por ID
+  // Obtém um usuário por id
   async getUserById(id) {
     const db = await openDatabase();
     return db.get('SELECT id, name, email FROM User WHERE id = ?', id);
   },
 
+  // Obtém um usuário por e-mail
   async getUserByEmail(email) {
     const db = await openDatabase();
     return db.get('SELECT * FROM User WHERE email = ?', email);
@@ -23,7 +24,7 @@ const UserModel = {
     return { id: result.lastID, name, email, password };
   },
 
-  // Atualiza um usuário por ID
+  // Atualiza um usuário por id
   async updateUserById(id, { name, email }) {
     const db = await openDatabase();
     const result = await db.run('UPDATE User SET name = ?, email = ? WHERE id = ?', [name, email, id]);
@@ -35,6 +36,7 @@ const UserModel = {
     }
   },
 
+  // Atualiza a senha de um usuário por id
   async updatePasswordById(id, { password }) {
     const db = await openDatabase();
     const salt = await bcrypt.genSalt(10);
@@ -48,7 +50,7 @@ const UserModel = {
     }
   },
 
-  // Exclui um usuário por ID
+  // Exclui um usuário por id
   async deleteUserById(id) {
     try {
       const db = await openDatabase();
@@ -60,11 +62,9 @@ const UserModel = {
         return null;
       }
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-
   },
+};
 
-}
-
-module.exports = UserModel
+module.exports = UserModel;

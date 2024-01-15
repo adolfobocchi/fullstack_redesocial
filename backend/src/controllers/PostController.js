@@ -3,8 +3,10 @@ const jwt = require('jsonwebtoken');
 const path = require('path');
 const fs = require('fs');
 
+// Diretório onde as imagens são armazenadas
 const imagesDir = path.resolve(__dirname, '../../public/images');
 
+// Função para excluir uma imagem
 function deleteImage(imageName) {
   let imagePath = `${imagesDir}/${imageName}`;
   fs.unlink(imagePath, (err) => {
@@ -18,7 +20,8 @@ function deleteImage(imageName) {
 
 const PostController = {
 
-  async getPosts  (req, res) {
+  // Obtém postagens mais recentes
+  async getPosts(req, res) {
     try {
       const limit = req.query.limit || 20; // Pode ajustar o número padrão conforme necessário
       const posts = await Post.getPosts(limit);
@@ -27,25 +30,26 @@ const PostController = {
       return res.status(500).json({ error: 'Erro ao obter postagens mais recentes.' });
     }
   },
-  // pega um usuario por ID
+
+  // Obtém uma postagem por id
   async getPostById(req, res) {
-    const PostId = req.params.id;
+    const postId = req.params.id;
 
     try {
-      const Post = await Post.getPostById(PostId);
+      const post = await Post.getPostById(postId);
 
-      if (Post) {
-        return res.json(Post);
+      if (post) {
+        return res.json(post);
       } else {
         return res.status(404).json({ error: 'Post não encontrado' });
       }
     } catch (error) {
-      console.error('Erro ao obter usuario por ID:', error.message);
+      console.error('Erro ao obter postagem por id:', error.message);
       return res.status(500).json({ error: 'Erro interno do servidor' });
     }
   },
 
-  // Cria um novo usuario
+  // Cria uma nova postagem
   async createPost(req, res) {
     const { title, description, user_id } = JSON.parse(req.body.post);
     
@@ -56,11 +60,12 @@ const PostController = {
       const newPost = await Post.createPost({ user_id, title, description, imagem });
       return res.status(201).json(newPost);
     } catch (error) {
-      console.error('Erro ao criar post:', error.message);
+      console.error('Erro ao criar postagem:', error.message);
       return res.status(500).json({ error: 'Erro interno do servidor' });
     }
   },
 
+  // Atualiza uma postagem por id
   async updatePost(req, res) {
     const { id, title, description, user_id } = JSON.parse(req.body.post);
 
@@ -70,9 +75,12 @@ const PostController = {
       }
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+      // Verifica se o usuário tem permissão para atualizar a postagem
       if (parseInt(decodedToken.userId) !== parseInt(user_id)) {
         return res.status(403).json({ error: 'Acesso Negado.' });
       }
+
       const updatedPost = await Post.updatePostById(id, user_id, { title, description, imagem });
 
       if (updatedPost) {
@@ -81,12 +89,13 @@ const PostController = {
         return res.status(404).json({ error: 'Post não encontrado' });
       }
     } catch (error) {
-      console.error('Erro ao atualizar post por ID:', error.message);
+      console.error('Erro ao atualizar postagem por id:', error.message);
       return res.status(500).json({ error: 'Erro interno do servidor' });
     }
   },
   
-  async likePost (req, res) {
+  // Curte uma postagem
+  async likePost(req, res) {
     const postId = req.params.id;
   
     try {
@@ -97,7 +106,8 @@ const PostController = {
     }
   },
   
-  async unlikePost (req, res) {
+  // Descurte uma postagem
+  async unlikePost(req, res) {
     const postId = req.params.id;
   
     try {
@@ -108,7 +118,8 @@ const PostController = {
     }
   },
   
-  async viewPost (req, res) {
+  // Registra uma visualização em uma postagem
+  async viewPost(req, res) {
     const postId = req.params.id;
   
     try {
@@ -119,6 +130,7 @@ const PostController = {
     }
   },
 
+  // Exclui uma postagem por id
   async deletePostById(req, res) {
     const postId = req.params.id;
     
@@ -126,43 +138,47 @@ const PostController = {
       const post = await Post.getPostById(postId);
       const token = req.headers.authorization.split(' ')[1];
       const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
+
+      // Verifica se o usuário tem permissão para excluir a postagem
       if (parseInt(decodedToken.userId) !== parseInt(post.user_id)) {
         return res.status(403).json({ error: 'Acesso Negado.' });
       }
+
       const deletedPost = await Post.deletePostById(postId);
 
       if (deletedPost) {
-        deleteImage(post.imagem)
-        return res.json({ message: 'post excluído com sucesso' });
+        deleteImage(post.imagem);
+        return res.json({ message: 'Postagem excluída com sucesso' });
       } else {
-        return res.status(404).json({ error: 'post não encontrado' });
+        return res.status(404).json({ error: 'Postagem não encontrada' });
       }
     } catch (error) {
-      console.error('Erro ao excluir post por ID:', error.message);
+      console.error('Erro ao excluir postagem por id:', error.message);
       return res.status(500).json({ error: 'Erro interno do servidor' });
     }
   },
 
-  async getHistorysByPostId  (req, res) {
+  // Obtém o histórico de uma postagem por id
+  async getHistorysByPostId(req, res) {
     const postId = req.params.id;
+
     try {
-      console.log(postId);
       const historys = await Post.getHistorysByPostId(postId);
       return res.json(historys);
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao obter postagens mais recentes.' });
+      return res.status(500).json({ error: 'Erro ao obter histórico da postagem.' });
     }
   },
 
-  async generateReport  (req, res) {
+  // Gera um relatório de postagens
+  async generateReport(req, res) {
     try {
       const posts = await Post.generateReport();
       return res.json(posts);
     } catch (error) {
-      return res.status(500).json({ error: 'Erro ao obter postagens mais recentes.' });
+      return res.status(500).json({ error: 'Erro ao obter relatório de postagens.' });
     }
   },
-
 };
 
 module.exports = PostController;
