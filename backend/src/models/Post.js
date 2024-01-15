@@ -40,8 +40,10 @@ const PostModel = {
     try {
       const db = await openDatabase();
       const currentPost = await db.get('SELECT * FROM Post WHERE id = ? AND user_id = ?', [id, user_id]);
-      const result = await db.run('UPDATE Post SET title = ?, description = ?, imagem = ? WHERE id = ? AND user_id = ?', [title, description, imagem, id, user_id]);
-
+      if(imagem)
+        var result = await db.run('UPDATE Post SET title = ?, description = ?, imagem = ? WHERE id = ? AND user_id = ?', [title, description, imagem, id, user_id]);
+      else
+        var result = await db.run('UPDATE Post SET title = ?, description = ? WHERE id = ? AND user_id = ?', [title, description, id, user_id]);
       if (result.changes > 0) {
         await createPostHistory(id, currentPost.title, currentPost.description);
         const postUpdated = await db.get('SELECT tab1.*, tab2.name FROM Post tab1 INNER JOIN User tab2 ON tab1.user_id = tab2.id WHERE tab1.id = ?', id);
