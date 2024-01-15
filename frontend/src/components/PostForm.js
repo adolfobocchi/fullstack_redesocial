@@ -24,14 +24,14 @@ const PostFom = ({ user, post, loading, error, createPost, updatePost, deletePos
         if (file) {
             const reader = new FileReader();
             reader.onloadend = () => {
-              setPostData({
-                ...postData,
-                preview: reader.result,
-                file: file
-              });
+                setPostData({
+                    ...postData,
+                    preview: reader.result,
+                    file: file
+                });
             };
             reader.readAsDataURL(file);
-          }
+        }
     };
 
     useEffect(() => {
@@ -106,7 +106,7 @@ const PostFom = ({ user, post, loading, error, createPost, updatePost, deletePos
                             onChange={(event) => handleInputChange(event)}
                             required
                         />
-                        {(postData.image || postData.preview) && <Styled.ImagePreview src={postData?.preview ? postData?.preview : `${API_URL}/images/${postData?.image}` } alt='Pré visualização da imagem' />}
+                        {(postData.image || postData.preview) && <Styled.ImagePreview src={postData?.preview ? postData?.preview : `${API_URL}/images/${postData?.image}`} alt='Pré visualização da imagem' />}
                         <Styled.InputFile>
                             <input type="file" id="image" name="image" onChange={(event) => handleFileChange(event)} />
                             <label htmlFor="image">

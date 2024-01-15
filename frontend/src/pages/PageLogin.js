@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 
 
 
-const PageLogin = ({ isAuthenticated, token}) => {
+const PageLogin = ({ isAuthenticated, token }) => {
     const [showRegister, setShowRegister] = useState(false);
-    
+
 
     const navigate = useNavigate();
-    useEffect(()=> {
+    useEffect(() => {
         if (isAuthenticated && token !== null) {
             navigate('/');
         }
@@ -28,12 +28,12 @@ const PageLogin = ({ isAuthenticated, token}) => {
                 {showRegister ? (
                     <>
                         <Register onClose={setShowRegister} />
-                        <Styled.DescriptionSmall style={{margin: '10px 0'}}>Tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Conecte-se.</Styled.SwitchAuthLink></Styled.DescriptionSmall>
+                        <Styled.DescriptionSmall style={{ margin: '10px 0' }}>Tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Conecte-se.</Styled.SwitchAuthLink></Styled.DescriptionSmall>
                     </>
                 ) : (
                     <>
                         <Login />
-                        <Styled.DescriptionSmall style={{margin: '10px 0'}}> Não tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Cadastre-se</Styled.SwitchAuthLink></Styled.DescriptionSmall>
+                        <Styled.DescriptionSmall style={{ margin: '10px 0' }}> Não tem uma conta? <Styled.SwitchAuthLink onClick={handleSwitchAuth}>Cadastre-se</Styled.SwitchAuthLink></Styled.DescriptionSmall>
                     </>
                 )}
             </Styled.AuthContainer>

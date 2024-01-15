@@ -30,8 +30,8 @@ const Register = ({ onClose }) => {
 
   return (
     <Styled.FormContainer>
-      <Styled.Title style={{margin: '10px 0'}}>FullStack Social</Styled.Title>
-      <Styled.DescriptionSmall style={{margin: '10px 0'}}>Cadastre-se para ver o que seus amigos fullstack estão compartilhando</Styled.DescriptionSmall>
+      <Styled.Title style={{ margin: '10px 0' }}>FullStack Social</Styled.Title>
+      <Styled.DescriptionSmall style={{ margin: '10px 0' }}>Cadastre-se para ver o que seus amigos fullstack estão compartilhando</Styled.DescriptionSmall>
       <Styled.Form onSubmit={handleRegister}>
         <Styled.InputField
           type="text"
@@ -64,8 +64,8 @@ const Register = ({ onClose }) => {
           minLength={8}
         />
 
-        <Styled.DescriptionSmall style={{marginBottom: '10px'}}>
-        Ao se cadastrar, você concorda com nossos Termos, Política de Privacidade e Política de Cookies.
+        <Styled.DescriptionSmall style={{ marginBottom: '10px' }}>
+          Ao se cadastrar, você concorda com nossos Termos, Política de Privacidade e Política de Cookies.
         </Styled.DescriptionSmall>
 
         <Styled.SubmitButton type="submit" disabled={loading}>
