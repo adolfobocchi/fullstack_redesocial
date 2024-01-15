@@ -100,7 +100,6 @@ const UserController = {
     try {
       const { email, password } = req.body;
       const user = await User.getUserByEmail(email);
-
       if (!user) {
         return res.status(401).json({ message: 'Credenciais inválidas.' });
       }

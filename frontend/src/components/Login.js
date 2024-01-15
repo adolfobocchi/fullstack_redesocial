@@ -4,7 +4,7 @@ import * as Styled from '../assets/styled';
 import { loginUser } from '../store/modules/User/actions';
 
 
-const Login = ({ dispatchLogin }) => {
+const Login = ({ error, dispatchLogin }) => {
 
     const [formData, setFormData] = useState({
         email: '',
@@ -47,7 +47,9 @@ const Login = ({ dispatchLogin }) => {
                     onChange={handleChange}
                 />
                 <Styled.SubmitButton type="submit">Login</Styled.SubmitButton>
+                
             </Styled.Form>
+            {error && <Styled.ErrorMessage>{error}</Styled.ErrorMessage>}
         </Styled.FormContainer>
     );
 };
@@ -55,6 +57,7 @@ const Login = ({ dispatchLogin }) => {
 const mapStateToProps = (state) => ({
     isAuthenticated: state.user.isAuthenticated,
     token: state.user.token,
+    error: state.user.error,
 });
 
 const mapDispatchToProps = (dispatch) => ({

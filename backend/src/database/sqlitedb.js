@@ -67,6 +67,10 @@ const sqlitedb = async () => {
     } else {
       // Se não for ambiente de teste, cria as tabelas normalmente
       await db.exec(`
+      DROP TABLE IF EXISTS User;
+      DROP TABLE IF EXISTS Post;
+      DROP TABLE IF EXISTS Comment;
+      DROP TABLE IF EXISTS PostHistory;
         -- Tabela de Usuários
         CREATE TABLE IF NOT EXISTS User (
           id INTEGER PRIMARY KEY,

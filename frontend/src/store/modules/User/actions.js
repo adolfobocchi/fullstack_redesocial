@@ -80,7 +80,7 @@ export const registerUser = (user) => {
       const response = await api.post('/register', user);
       dispatch(registerUserSuccess(response.data));
     } catch (error) {
-      dispatch(registerUserFailure(error.message));
+      dispatch(registerUserFailure(error.response.data.message || error.message));
     }
   };
 };
@@ -92,7 +92,7 @@ export const loginUser = (credenciais) => {
       const response = await api.post('/login', credenciais);
       dispatch(loginUserSuccess(response.data));
     } catch (error) {
-      dispatch(loginUserFailure(error.message));
+      dispatch(loginUserFailure(error.response.data.message || error.message));
     }
   };
 };
@@ -115,7 +115,7 @@ export const updateUser = (user) => {
       const response = await api.put('/user', user);
       dispatch(updateUserSuccess(response.data));
     } catch (error) {
-      dispatch(updateUserFailure(error.message));
+      dispatch(updateUserFailure(error.response.data.message || error.message));
     }
   };
 };
@@ -127,7 +127,7 @@ export const deleteUser = (user) => {
       const response = await api.delete(`/user/${user.userId}`);
       dispatch(deleteUserSuccess(response.data));
     } catch (error) {
-      dispatch(deleteUserFailure(error.message));
+      dispatch(deleteUserFailure(error.response.data.message || error.message));
     }
   };
 };
