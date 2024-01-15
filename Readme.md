@@ -103,7 +103,33 @@ Como Executar o Backend
 
 Para executar o backend, siga as etapas abaixo:
 
-git clone 
+git clone https://github.com/adolfobocchi/fullstack_redesocial.git
+
+Navegue até o diretório do projeto:
+
+cd fullstack_redesocial
+
+navegue ate a pasta backend:
+
+cd backend
+
+crie um arquivo .env e edite o arquivo conforme abaixo, definindo os valores das variaveis de acordo com o seu ambiente:
+PORT=3002
+SQLITE_DB_PATH=./db/db.sqlite
+SQLITE_TEST_DB_PATH=./db/testdb.sqlite
+JWT_SECRET=
+SMTP_PORT=
+SMTP_EMAIL=
+SMTP_PASSWORD=
+SMTP_SERVER=
+
+Instale as dependências do Node.js:
+
+npm install
+
+Inicie o servidor:
+
+npm start
 
 Frontend do Projeto
 
@@ -178,3 +204,24 @@ Styled-components
 Como Executar o Frontend
 
 Para executar o frontend, siga as etapas abaixo:
+
+git clone https://github.com/adolfobocchi/fullstack_redesocial.git
+
+Navegue até o diretório do projeto:
+
+cd fullstack_redesocial
+
+navegue ate a pasta frontend:
+
+cd frontend
+
+crie um arquivo .env e edite o arquivo conforme abaixo:
+REACT_APP_URL_API=http://localhost:3002
+
+Instale as dependências:
+
+npm install
+
+Inicie o servidor de desenvolvimento:
+
+npm start
