@@ -54,8 +54,9 @@ const PostController = {
     const { title, description, user_id } = JSON.parse(req.body.post);
     
     try {
+      var imagem = ''
       if (req.files && Object.keys(req.files).length > 0) {
-        var imagem = req.files.image[0].filename;
+        imagem = req.files.image[0].filename;
       }
       const newPost = await Post.createPost({ user_id, title, description, imagem });
       return res.status(201).json(newPost);
