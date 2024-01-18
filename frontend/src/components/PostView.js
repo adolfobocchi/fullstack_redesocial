@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import * as Styled from '../assets/styled';
-import { createComment, deleteComment, getComments, updateComment } from '../store/modules/Comment/actions';
+import { clearComments, createComment, deleteComment, getComments, updateComment } from '../store/modules/Comment/actions';
 import { formatDate } from '../utils';
 
-const PostView = ({ post, comments, loading, error, user, createComment, getComments, deleteComment, updateComment, onClose }) => {
+const PostView = ({ post, comments, clearComments, loading, error, user, createComment, getComments, deleteComment, updateComment, onClose }) => {
   const API_URL = process.env.REACT_APP_URL_API;
 
   const [commentText, setCommentText] = useState('');
@@ -13,6 +13,8 @@ const PostView = ({ post, comments, loading, error, user, createComment, getComm
   const handleWarningButtonClick = (e) => {
     e.stopPropagation();
     e.preventDefault();
+    post = null;
+    clearComments();
     onClose(e);
   };
 
@@ -127,6 +129,7 @@ const mapDispatchToProps = (dispatch) => ({
   createComment: (comment) => dispatch(createComment(comment)),
   updateComment: (comment) => dispatch(updateComment(comment)),
   getComments: (postId) => dispatch(getComments(postId)),
+  clearComments: (postId) => dispatch(clearComments()),
   deleteComment: (commentId) => dispatch(deleteComment(commentId))
 });
 

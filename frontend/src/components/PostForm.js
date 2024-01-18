@@ -18,6 +18,13 @@ const PostFom = ({ user, post, loading, error, createPost, updatePost, deletePos
         setPostData({ ...postData, [e.target.name]: e.target.value });
     };
 
+    const handleWarningButtonClick = (e) => {
+        e.stopPropagation();
+        e.preventDefault();
+        post = null;
+        onClose(e);
+      };
+
     const handleFileChange = (e) => {
         e.stopPropagation()
         const file = e.target.files[0];
@@ -82,7 +89,7 @@ const PostFom = ({ user, post, loading, error, createPost, updatePost, deletePos
                     <Styled.PostHeader>
 
                         <Styled.Title>{postData.id ? 'Editar Postagem' : 'Nova Postagem'}</Styled.Title>
-                        <Styled.CloseButton type="button" onClick={onClose}>
+                        <Styled.CloseButton type="button" onClick={handleWarningButtonClick}>
                             <Styled.CloseIcon />
                         </Styled.CloseButton>
                     </Styled.PostHeader>

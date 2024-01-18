@@ -19,24 +19,29 @@ const Post = ({ user, post, likePost, unlikePost, viewPost }) => {
 
     const closeModal = (e) => {
         e.stopPropagation();
+        post = null;
         setModalOpen(false);
     };
 
     const openModalView = (e) => {
         e.stopPropagation();
+        post = null;
         setModalViewOpen(true);
     };
 
-    const closeModalView = () => {
+    const closeModalView = (e) => {
+        e.stopPropagation();
         setModalViewOpen(false);
     };
 
     const openModalHistory = (e) => {
-        e.stopPropagation();
+        
         setModalHistoryOpen(true);
     };
 
-    const closeModalHistory = () => {
+    const closeModalHistory = (e) => {
+        e.stopPropagation();
+        post = null;
         setModalHistoryOpen(false);
     };
 

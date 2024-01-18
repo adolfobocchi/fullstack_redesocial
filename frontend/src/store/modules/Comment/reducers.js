@@ -13,7 +13,8 @@ import {
     RECENT_COMMENTS_FAILURE,
     GET_COMMENTS_REQUEST,
     GET_COMMENTS_SUCCESS,
-    GET_COMMENTS_FAILURE
+    GET_COMMENTS_FAILURE,
+    CLEAR_COMMENTS_REQUEST
   } from './actions';
   
   const initialState = {
@@ -46,6 +47,8 @@ import {
         return { ...state, loading: false, error: action.payload };
       case GET_COMMENTS_REQUEST:
         return { ...state, loading: true, error: null };
+      case CLEAR_COMMENTS_REQUEST:
+        return { ...state, comments: [], loading: false, error: null };
       case GET_COMMENTS_SUCCESS:
         return { ...state, comments: action.payload, loading: false, error: null };
       case GET_COMMENTS_FAILURE:

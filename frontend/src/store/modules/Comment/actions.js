@@ -13,6 +13,7 @@ export const DELETE_COMMENT_SUCCESS = 'DELETE_COMMENT_SUCCESS';
 export const DELETE_COMMENT_FAILURE = 'DELETE_COMMENT_FAILURE';
 
 export const GET_COMMENTS_REQUEST = 'GET_COMMENTS_REQUEST';
+export const CLEAR_COMMENTS_REQUEST = 'GET_COMMENTS_REQUEST';
 export const GET_COMMENTS_SUCCESS = 'GET_COMMENTS_SUCCESS';
 export const GET_COMMENTS_FAILURE = 'GET_COMMENTS_FAILURE';
 
@@ -62,6 +63,9 @@ export const getCommentsSuccess = (postId) => ({
 export const getCommentsFailure = (error) => ({
   type: GET_COMMENTS_FAILURE,
   payload: error
+});
+export const clearComments = () => ({
+  type: CLEAR_COMMENTS_REQUEST
 });
 
 export const createComment = (comment) => {
