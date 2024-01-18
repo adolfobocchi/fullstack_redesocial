@@ -13,7 +13,6 @@ const SendEmailController = {
                 html: `${novaMensagem}`,
 
             }, (error, info) => {
-                const data = moment().format('DD/MM/YYYY hh:mm:ss')
                 if (error) {
 
                     console.error('Erro ao enviar o email: ' + error);
